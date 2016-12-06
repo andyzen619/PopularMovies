@@ -9,6 +9,6 @@
     android:horizontalSpacing="10dp"
     android:stretchMode="columnWidth"
     android:gravity="center"
-    tools:context="com.example.andydesk.popularmovies.MovieGridFragment">
+    tools:context="com.example.andydesk.popularmovies.Fragments.MovieGridFragment">
 
 </GridView>
