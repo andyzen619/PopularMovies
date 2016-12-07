@@ -39,6 +39,7 @@ public class MyMovieAdapter extends ArrayAdapter {
         TextView genreTextView = (TextView) convertView.findViewById(R.id.genre_text_view);
         TextView releaseDateTextView = (TextView) convertView.findViewById(R.id.year_text_view);
 
+        //Populate the each grid item with picture, year, and genre of movie
         Picasso.with(getContext()).load(movie.getImage()).into(movie_image_view);
         genreTextView.setText(movie.getGenre());
         releaseDateTextView.setText(movie.getReleaseDate());
