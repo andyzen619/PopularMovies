@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 
 import com.example.andydesk.popularmovies.Adapters.MyMovieAdapter;
 import com.example.andydesk.popularmovies.FetchMoviesTask;
@@ -31,9 +32,7 @@ public class MovieGridFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        fetchMoviesTask = new FetchMoviesTask();
-        movieObjectArrayList = fetchMoviesTask.execute();
-        movieAdapter.addAll(movieObjectArrayList);
+
     }
 
     @Override
@@ -41,6 +40,14 @@ public class MovieGridFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         setHasOptionsMenu(true);
+        fetchMoviesTask = new FetchMoviesTask();
+        movieObjectArrayList = fetchMoviesTask.execute();
+        movieAdapter = new MyMovieAdapter(
+                getActivity(),
+                R.layout.grid_movie_item,
+                movieObjectArrayList);
+        GridView rootView =  (GridView) container.findViewById(R.id.movie_grid_fragment);
+        rootView.setAdapter(movieAdapter);
         return inflater.inflate(R.layout.fragment_movie_grid, container, false);
     }
 

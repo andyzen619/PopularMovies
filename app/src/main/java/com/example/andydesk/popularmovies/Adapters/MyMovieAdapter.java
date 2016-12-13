@@ -2,6 +2,7 @@ package com.example.andydesk.popularmovies.Adapters;
 
 import android.content.Context;
 import android.graphics.Movie;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.example.andydesk.popularmovies.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by owner on 05/12/2016.
@@ -23,8 +25,8 @@ import java.util.ArrayList;
 public class MyMovieAdapter extends ArrayAdapter {
     ArrayList<MovieObject> movieObjects;
 
-    public MyMovieAdapter(Context context, int resource,  ArrayList<MovieObject> movieObjects) {
-        super(context, resource, movieObjects);
+    public MyMovieAdapter(Context context, int resource, AsyncTask<String, Void, ArrayList<MovieObject>> movieObjects) {
+        super(context, resource, (List) movieObjects);
     }
 
     @NonNull
