@@ -22,9 +22,7 @@ public class FetchMoviesTask extends AsyncTask<String, Void, ArrayList<MovieObje
     private String movieUrl;
     private final String LOG_TAG = FetchMoviesTask.class.getSimpleName();
 
-    public FetchMoviesTask(String url) {
-        movieObjectArrayList = new ArrayList<MovieObject>();
-        movieUrl = url;
+    public FetchMoviesTask() {
     }
 
     @Override
