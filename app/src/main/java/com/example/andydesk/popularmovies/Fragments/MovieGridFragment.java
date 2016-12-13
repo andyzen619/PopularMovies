@@ -10,9 +10,13 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.andydesk.popularmovies.FetchMoviesTask;
 import com.example.andydesk.popularmovies.R;
 
 public class MovieGridFragment extends Fragment {
+
+    private FetchMoviesTask fetchMoviesTask;
+    private
 
     public MovieGridFragment() {
         // Required empty public constructor
