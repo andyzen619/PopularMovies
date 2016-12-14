@@ -25,7 +25,7 @@ import java.util.List;
 public class MyMovieAdapter extends ArrayAdapter {
     ArrayList<MovieObject> movieObjects;
 
-    public MyMovieAdapter(Context context, int resource, AsyncTask<String, Void, ArrayList<MovieObject>> movieObjects) {
+    public MyMovieAdapter(Context context, int resource, ArrayList<MovieObject> movieObjects) {
         super(context, resource, (List) movieObjects);
     }
 

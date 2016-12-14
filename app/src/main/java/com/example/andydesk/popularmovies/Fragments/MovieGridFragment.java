@@ -18,12 +18,13 @@ import com.example.andydesk.popularmovies.MovieObject;
 import com.example.andydesk.popularmovies.R;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 public class MovieGridFragment extends Fragment {
 
     private FetchMoviesTask fetchMoviesTask;
     private MyMovieAdapter movieAdapter;
-    private AsyncTask<String, Void, ArrayList<MovieObject>> movieObjectArrayList;
+    private ArrayList<MovieObject> movieObjectArrayList;
 
     public MovieGridFragment() {
         // Required empty public constructor
@@ -40,15 +41,26 @@ public class MovieGridFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         setHasOptionsMenu(true);
+        View rootView = inflater.inflate(R.layout.fragment_movie_grid, container, false);
+
         fetchMoviesTask = new FetchMoviesTask();
-        movieObjectArrayList = fetchMoviesTask.execute();
+        fetchMoviesTask.execute();
+        try {
+            movieObjectArrayList = (ArrayList<MovieObject>) fetchMoviesTask.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
         movieAdapter = new MyMovieAdapter(
                 getActivity(),
                 R.layout.grid_movie_item,
                 movieObjectArrayList);
-        GridView rootView =  (GridView) container.findViewById(R.id.movie_grid_fragment);
-        rootView.setAdapter(movieAdapter);
-        return inflater.inflate(R.layout.fragment_movie_grid, container, false);
+
+        GridView gridView =  (GridView) rootView.findViewById(R.id.movie_grid_view);
+        gridView.setAdapter(movieAdapter);
+        return rootView;
     }
 
     @Override

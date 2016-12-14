@@ -61,4 +61,6 @@ public class FetchMoviesTask extends AsyncTask<String, Void, ArrayList<MovieObje
 
         return movieObjectArrayList;
     }
+
+
 }
