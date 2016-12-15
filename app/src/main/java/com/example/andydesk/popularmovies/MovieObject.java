@@ -10,11 +10,13 @@ public class MovieObject{
     private String rating;
     private String plot;
     private String imageUrl;
+    private int id;
 
-    public MovieObject(String title, String releaseDate, String Genre){
+    public MovieObject(String title, String releaseDate, String Genre, int id){
         this.releaseDate = releaseDate;
         this.genre = genre;
         this.title = title;
+        this.id = id;
     }
 
     public String getGenre() {
