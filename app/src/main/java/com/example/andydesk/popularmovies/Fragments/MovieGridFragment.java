@@ -1,8 +1,5 @@
 package com.example.andydesk.popularmovies.Fragments;
 
-import android.content.Context;
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 
 import com.example.andydesk.popularmovies.Adapters.MyMovieAdapter;
-import com.example.andydesk.popularmovies.FetchMoviesTask;
+import com.example.andydesk.popularmovies.Utilities.FetchMoviesTask;
 import com.example.andydesk.popularmovies.MovieObject;
 import com.example.andydesk.popularmovies.R;
 

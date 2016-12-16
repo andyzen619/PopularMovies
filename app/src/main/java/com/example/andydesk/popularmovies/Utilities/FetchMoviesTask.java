@@ -1,8 +1,11 @@
-package com.example.andydesk.popularmovies;
+package com.example.andydesk.popularmovies.Utilities;
 
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
+
+import com.example.andydesk.popularmovies.BuildConfig;
+import com.example.andydesk.popularmovies.MovieObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -75,12 +78,20 @@ public class FetchMoviesTask extends AsyncTask<Void, Void, ArrayList<MovieObject
 
     public ArrayList<MovieObject> getMovieList(String jsonString) {
 
+        JSONObject movie;
+        MovieObject movieObject;
+
         try {
             JSONObject movieJsonObject = new JSONObject(jsonString);
             JSONArray results = movieJsonObject.getJSONArray("results");
             for(int i = 0; i < results.length(); i++) {
-                JSONObject movie = (JSONObject) results.get(i);
-                JSONObject genre = movie.getString("");
+                movie = (JSONObject) results.get(i);
+                String releaseDate =  movie.getString("release_date");
+                JSONArray genre  = movie.getJSONArray("genre_ids");
+                String imagePath = movie.getString("poster_path");
+                String title = movie.getString("title");
+
+
 
             }
         } catch (JSONException e) {
