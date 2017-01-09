@@ -6,5 +6,5 @@ package com.example.andydesk.popularmovies.Utilities;
 
 public class Util {
 
-    public static final int action =
+
 }
