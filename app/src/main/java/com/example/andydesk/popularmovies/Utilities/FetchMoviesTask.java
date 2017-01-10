@@ -93,9 +93,9 @@ public class FetchMoviesTask extends AsyncTask<Void, Void, ArrayList<MovieObject
                 JSONArray genre  = movie.getJSONArray("genre_ids");
                 String imagePath = movie.getString("poster_path");
                 String title = movie.getString("title");
-
-
-
+                int id = movie.getInt("id");
+                movieObjectArrayList.add(new MovieObject(title, releaseDate, "genre", id)
+                .getImage(imagePath));
             }
         } catch (JSONException e) {
             e.printStackTrace();
