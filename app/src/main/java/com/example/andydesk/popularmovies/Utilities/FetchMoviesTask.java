@@ -60,12 +60,15 @@ public class FetchMoviesTask extends AsyncTask<Void, Void, ArrayList<MovieObject
             }
 
             bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-            String line = bufferedReader.readLine();
-            while( line != null) { //TODO: line never reaches null (BUG)
+            String line;
+            while((line = bufferedReader.readLine()) != null) { //TODO: line never reaches null (BUG)
                 buffer.append(line + "\n");
             }
+
+
             rawMovieString = buffer.toString();
 
+            //TODO: Extract info from raw movie string into movie objects.
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
