@@ -26,7 +26,7 @@ import java.util.ArrayList;
 
 public class FetchMoviesTask extends AsyncTask<Void, Void, ArrayList<MovieObject>> {
 
-    private ArrayList<MovieObject> movieObjectArrayList;
+    private ArrayList<MovieObject> movieObjectArrayList = new ArrayList<MovieObject>();
     private String movieUrl;
     private final String LOG_TAG = FetchMoviesTask.class.getSimpleName();
 
@@ -75,7 +75,8 @@ public class FetchMoviesTask extends AsyncTask<Void, Void, ArrayList<MovieObject
             e.printStackTrace();
         }
 
-        return getMovieList(rawMovieString);
+        movieObjectArrayList = getMovieList(rawMovieString);
+        return movieObjectArrayList;
 
     }
 
@@ -94,8 +95,9 @@ public class FetchMoviesTask extends AsyncTask<Void, Void, ArrayList<MovieObject
                 String imagePath = movie.getString("poster_path");
                 String title = movie.getString("title");
                 int id = movie.getInt("id");
-                movieObjectArrayList.add(new MovieObject(title, releaseDate, "genre", id)
-                .getImage(imagePath));
+                movieObject = new MovieObject(title, releaseDate, "genre", id);
+                movieObject.setImage(imagePath);
+                movieObjectArrayList.add(movieObject);
             }
         } catch (JSONException e) {
             e.printStackTrace();
