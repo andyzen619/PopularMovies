@@ -25,8 +25,8 @@ import java.util.List;
 public class MyMovieAdapter extends ArrayAdapter {
     ArrayList<MovieObject> movieObjects;
 
-    public MyMovieAdapter(Context context, int resource, ArrayList<MovieObject> movieObjects) {
-        super(context, resource, (List) movieObjects);
+    public MyMovieAdapter(Context context, int resource, int textViewResourceId, ArrayList<MovieObject> movieObjects) {
+        super(context, resource, textViewResourceId, (List) movieObjects);
     }
 
     @NonNull
