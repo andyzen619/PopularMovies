@@ -53,7 +53,7 @@ public class MovieGridFragment extends Fragment {
         movieAdapter = new MyMovieAdapter(
                 getActivity(),
                 R.layout.grid_movie_item,
-                R.id.
+                R.id.description_text_view,
                 movieObjectArrayList);
 
         GridView gridView =  (GridView) rootView.findViewById(R.id.movie_grid_view);
