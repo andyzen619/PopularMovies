@@ -50,7 +50,7 @@ public class MovieObject{
     }
 
     public String getImage() {
-        return imageUrl;
+        return "http://i.imgur.com"+ imageUrl;
     }
 
 
