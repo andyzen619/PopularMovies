@@ -50,7 +50,7 @@ public class MovieObject{
     }
 
     public String getImage() {
-        return "http://i.imgur.com"+ imageUrl;
+        return "http://image.tmdb.org/t/p/w500/"+ imageUrl;
     }
 
 
