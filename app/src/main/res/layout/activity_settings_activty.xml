@@ -11,4 +11,24 @@
     android:background="@color/colorPrimaryDark"
     tools:context="com.example.andydesk.popularmovies.SettingsActivty">
 
+    <RadioButton
+        android:text="Popularity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/radioButton4"
+        />
+
+    <RadioButton
+        android:text="Rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/radioButton4"
+        android:layout_alignRight="@+id/radioButton4"
+        android:layout_alignEnd="@+id/radioButton4"
+        android:id="@+id/radioButton5"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>

@@ -1,15 +1,18 @@
 package com.example.andydesk.popularmovies.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 
 import com.example.andydesk.popularmovies.Adapters.MyMovieAdapter;
+import com.example.andydesk.popularmovies.SettingsActivty;
 import com.example.andydesk.popularmovies.Utilities.FetchMoviesTask;
 import com.example.andydesk.popularmovies.MovieObject;
 import com.example.andydesk.popularmovies.R;
@@ -56,7 +59,7 @@ public class MovieGridFragment extends Fragment {
                 R.id.description_text_view,
                 movieObjectArrayList);
 
-        GridView gridView =  (GridView) rootView.findViewById(R.id.movie_grid_view);
+        GridView gridView = (GridView) rootView.findViewById(R.id.movie_grid_view);
         gridView.setAdapter(movieAdapter);
         return rootView;
     }
@@ -65,5 +68,12 @@ public class MovieGridFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.main_menu, menu);
+        MenuItem settingsItem = (MenuItem) getActivity().findViewById(R.id.settingsButton);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if item
+        return super.onOptionsItemSelected(item);
     }
 }
