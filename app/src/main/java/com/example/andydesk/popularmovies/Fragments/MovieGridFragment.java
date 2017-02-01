@@ -73,7 +73,13 @@ public class MovieGridFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if item
+        if (item.getItemId() == R.id.refreshButton ) {
+            fetchMoviesTask.execute();
+        }
+        else if(item.getItemId() == R.id.settingsButton) {
+            Intent settingsIntent = new Intent(getActivity(), SettingsActivty.class);
+            startActivity(settingsIntent);
+        }
         return super.onOptionsItemSelected(item);
     }
 }
