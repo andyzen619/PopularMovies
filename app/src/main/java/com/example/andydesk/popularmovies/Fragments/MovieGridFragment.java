@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.example.andydesk.popularmovies.Adapters.MyMovieAdapter;
 import com.example.andydesk.popularmovies.SettingsActivty;
@@ -74,12 +75,34 @@ public class MovieGridFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.refreshButton ) {
-            fetchMoviesTask.execute();
+            refreshMovieList();
         }
         else if(item.getItemId() == R.id.settingsButton) {
             Intent settingsIntent = new Intent(getActivity(), SettingsActivty.class);
             startActivity(settingsIntent);
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * Refresh the movie information from the host
+     */
+    private void refreshMovieList() {
+        FetchMoviesTask refreshTask = new FetchMoviesTask();
+        refreshTask.execute();
+        try {
+            movieObjectArrayList = refreshTask.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        movieAdapter.clear();
+        movieAdapter.addAll(movieObjectArrayList);
+
+        CharSequence text = "Updated";
+        Toast toast = Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT);
+        toast.show();
+
     }
 }
