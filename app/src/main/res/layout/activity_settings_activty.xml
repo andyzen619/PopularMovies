@@ -8,27 +8,26 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@color/colorPrimaryDark"
+    android:background="@android:color/holo_orange_dark"
     tools:context="com.example.andydesk.popularmovies.SettingsActivty">
 
-    <RadioButton
+    <Switch
         android:text="Popularity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/radioButton4"
-        />
-
-    <RadioButton
-        android:text="Rating"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/radioButton4"
-        android:layout_alignRight="@+id/radioButton4"
-        android:layout_alignEnd="@+id/radioButton4"
-        android:id="@+id/radioButton5"
+        android:id="@+id/switch1"
+        android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:textSize="18sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        tools:textColor="@android:color/background_dark"
+        android:textColorHighlight="@android:color/darker_gray" />
 </RelativeLayout>
