@@ -3,9 +3,11 @@
     <PreferenceCategory
         android:title="View"
         android:key="preference_category_view"
+        android:enabled="false" />
         <CheckBoxPreference
-            android:key="pref_sync"
+            android:key="pref_sort_type"
             android:title="Sort by rating"
             android:summary="Sorts the movie listing by rating"
         android:defaultValue="true" />
+
 </PreferenceScreen>
