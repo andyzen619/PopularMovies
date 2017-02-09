@@ -5,9 +5,9 @@
         android:key="preference_category_view"
         android:enabled="false" />
         <CheckBoxPreference
-            android:key="pref_sort_type"
+            android:key="pref_sort_by_rating"
             android:title="Sort by rating"
             android:summary="Sorts the movie listing by rating"
-        android:defaultValue="true" />
+        android:defaultValue="false" />
 
 </PreferenceScreen>
