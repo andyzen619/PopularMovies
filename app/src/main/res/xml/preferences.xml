@@ -4,10 +4,10 @@
         android:title="View"
         android:key="preference_category_view"
         android:enabled="false" />
-        <CheckBoxPreference
-            android:key="pref_sort_by_rating"
-            android:title="Sort by rating"
-            android:summary="Sorts the movie listing by rating"
+    <CheckBoxPreference
+        android:key="preference_sort_by_rating"
+        android:title="Sort by rating"
+        android:summary="Sorts the movie listing by rating"
         android:defaultValue="false" />
 
 </PreferenceScreen>

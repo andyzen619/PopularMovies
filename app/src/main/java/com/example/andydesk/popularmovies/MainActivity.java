@@ -29,8 +29,7 @@ public class MainActivity extends AppCompatActivity {
         //TODO: Add Sort order setting to share preferences (1st)
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("pref_sort_by_rating", "false");
+        editor.putBoolean("preference_sort_by_rating", false);
         editor.commit();
-
     }
 }
