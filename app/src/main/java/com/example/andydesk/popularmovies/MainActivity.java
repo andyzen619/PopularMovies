@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import com.example.andydesk.popularmovies.Fragments.MovieGridFragment;
 
-//TODO: Change share preferences sort order setting when checked
 //TODO: Implement refresh
 
 public class MainActivity extends AppCompatActivity {
@@ -25,11 +24,5 @@ public class MainActivity extends AppCompatActivity {
                     // and commit.
                     .commit();
         }
-
-        //TODO: Add Sort order setting to share preferences (1st)
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean("preference_sort_by_rating", false);
-        editor.commit();
     }
 }

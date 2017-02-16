@@ -1,7 +1,9 @@
 package com.example.andydesk.popularmovies.Utilities;
 
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.example.andydesk.popularmovies.BuildConfig;
@@ -24,24 +26,33 @@ import java.util.ArrayList;
  * Created by Andy DESK on 12/6/2016.
  */
 
-public class FetchMoviesTask extends AsyncTask<Void, Void, ArrayList<MovieObject>> {
+public class FetchMoviesTask extends AsyncTask<SharedPreferences, Void, ArrayList<MovieObject>> {
 
     private ArrayList<MovieObject> movieObjectArrayList = new ArrayList<MovieObject>();
     private String movieUrl;
     private final String LOG_TAG = FetchMoviesTask.class.getSimpleName();
+    private String basePopularUrl = "http://api.themoviedb.org/3/movie/popular?";
+    private String baseRatingUrl = "http://api.themoviedb.org/3/movie/top_rated?";
+    private Boolean isSortByRating;
+    private Uri urlUri;
 
     @Override
-    protected ArrayList<MovieObject> doInBackground(Void... params) {
+    protected ArrayList<MovieObject> doInBackground(SharedPreferences... params) {
 
         HttpURLConnection urlConnection = null;
         BufferedReader bufferedReader = null;
-
         String rawMovieString = null;
 
-        String baseUrl = "http://api.themoviedb.org/3/movie/popular?";
-        Uri urlUri = Uri.parse(baseUrl).buildUpon()
-                .appendQueryParameter("api_key", BuildConfig.OPEN_MOVIE_API_KEY)
-                .build();
+        if (isSortByRating = params[0].getBoolean("pref_sort_by_rating", false)) {
+            urlUri = Uri.parse(baseRatingUrl).buildUpon()
+                    .appendQueryParameter("api_key", BuildConfig.OPEN_MOVIE_API_KEY)
+                    .build();
+        }
+        else {
+            urlUri = Uri.parse(basePopularUrl).buildUpon()
+                    .appendQueryParameter("api_key", BuildConfig.OPEN_MOVIE_API_KEY)
+                    .build();
+        }
         try {
             //Assign built url
             URL url = new URL(urlUri.toString());
