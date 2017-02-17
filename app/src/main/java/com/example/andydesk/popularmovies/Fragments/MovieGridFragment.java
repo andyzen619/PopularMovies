@@ -15,6 +15,7 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import com.example.andydesk.popularmovies.Adapters.MyMovieAdapter;
+import com.example.andydesk.popularmovies.MovieDetailActivty;
 import com.example.andydesk.popularmovies.SettingsActivty;
 import com.example.andydesk.popularmovies.Utilities.FetchMoviesTask;
 import com.example.andydesk.popularmovies.MovieObject;
@@ -28,6 +29,7 @@ public class MovieGridFragment extends Fragment {
     private FetchMoviesTask fetchMoviesTask;
     private MyMovieAdapter movieAdapter;
     private ArrayList<MovieObject> movieObjectArrayList;
+    private SharedPreferences sharedPreferences;
 
     public MovieGridFragment() {
         // Required empty public constructor
@@ -45,9 +47,10 @@ public class MovieGridFragment extends Fragment {
         // Inflate the layout for this fragment
         setHasOptionsMenu(true);
         View rootView = inflater.inflate(R.layout.fragment_movie_grid, container, false);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         fetchMoviesTask = new FetchMoviesTask();
-        fetchMoviesTask.execute();
+        fetchMoviesTask.execute(sharedPreferences);
         try {
             movieObjectArrayList = (ArrayList<MovieObject>) fetchMoviesTask.get();
         } catch (InterruptedException e) {
@@ -64,6 +67,13 @@ public class MovieGridFragment extends Fragment {
 
         GridView gridView = (GridView) rootView.findViewById(R.id.movie_grid_view);
         gridView.setAdapter(movieAdapter);
+        gridView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), MovieDetailActivty.class);
+                intent.putExtra("movieObject", )
+            }
+        });
         return rootView;
     }
 
@@ -91,7 +101,7 @@ public class MovieGridFragment extends Fragment {
      */
     private void refreshMovieList() {
         FetchMoviesTask refreshTask = new FetchMoviesTask();
-        refreshTask.execute();
+        refreshTask.execute(sharedPreferences);
         try {
             movieObjectArrayList = refreshTask.get();
         } catch (InterruptedException e) {

@@ -42,8 +42,9 @@ public class FetchMoviesTask extends AsyncTask<SharedPreferences, Void, ArrayLis
         HttpURLConnection urlConnection = null;
         BufferedReader bufferedReader = null;
         String rawMovieString = null;
+        isSortByRating = params[0].getBoolean("preference_sort_by_rating", false);
 
-        if (isSortByRating = params[0].getBoolean("pref_sort_by_rating", false)) {
+        if (isSortByRating) {
             urlUri = Uri.parse(baseRatingUrl).buildUpon()
                     .appendQueryParameter("api_key", BuildConfig.OPEN_MOVIE_API_KEY)
                     .build();
