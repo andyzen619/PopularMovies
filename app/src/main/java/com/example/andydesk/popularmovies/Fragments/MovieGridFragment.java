@@ -67,13 +67,6 @@ public class MovieGridFragment extends Fragment {
 
         GridView gridView = (GridView) rootView.findViewById(R.id.movie_grid_view);
         gridView.setAdapter(movieAdapter);
-        gridView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), MovieDetailActivty.class);
-                intent.putExtra("movieObject", )
-            }
-        });
         return rootView;
     }
 

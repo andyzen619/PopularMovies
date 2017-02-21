@@ -46,7 +46,14 @@ public class MyMovieAdapter extends ArrayAdapter {
         String description = movie.getTitle() + "\n" + movie.getReleaseDate();
         descriptionTextView.setText(description);
 
+        movie_image_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
         return convertView;
     }
+
+
 }
