@@ -1,9 +1,11 @@
 package com.example.andydesk.popularmovies;
 
+import java.io.Serializable;
+
 /**
  * Created by owner on 05/12/2016.
  */
-public class MovieObject{
+public class MovieObject implements Serializable {
     private String genre;
     private String title;
     private String releaseDate;

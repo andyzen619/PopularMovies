@@ -14,6 +14,10 @@ public class MovieDetailActivty extends AppCompatActivity {
         setContentView(R.layout.activity_movie_detail_activty);
 
         ImageView movieDetailImageView = (ImageView) findViewById(R.id.movieDetailImageView);
+<<<<<<< HEAD
+=======
+        Intent intent = getIntent();
+>>>>>>> 46b76a8ff1c4cc449d7c300164cfe421cdaeb267
 
     }
 }
