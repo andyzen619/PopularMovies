@@ -1,6 +1,7 @@
 package com.example.andydesk.popularmovies.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Movie;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
@@ -11,10 +12,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.andydesk.popularmovies.MovieDetailActivty;
 import com.example.andydesk.popularmovies.MovieObject;
 import com.example.andydesk.popularmovies.R;
 import com.squareup.picasso.Picasso;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +34,7 @@ public class MyMovieAdapter extends ArrayAdapter {
 
     @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         MovieObject movie = (MovieObject) getItem(position);
         if(convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.grid_movie_item, parent, false);
@@ -45,6 +48,17 @@ public class MyMovieAdapter extends ArrayAdapter {
         Picasso.with(getContext()).load(imageUrl).into(movie_image_view);
         String description = movie.getTitle() + "\n" + movie.getReleaseDate();
         descriptionTextView.setText(description);
+
+        movie_image_view.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent movieDetailsIntent = new Intent(getContext(), MovieDetailActivty.class);
+                movieDetailsIntent.putExtra("movieObejct", (MovieObject) getItem(position));
+                getContext().startActivity(movieDetailsIntent);
+            }
+        });
+
 
 
         return convertView;
