@@ -45,27 +45,19 @@ public class MyMovieAdapter extends ArrayAdapter {
 
         //Populate the each grid item with picture, year, and genre of movie
         String imageUrl = movie.getImage();
-        Picasso.with(getContext()).load(imageUrl).into(movie_image_view);
+        Picasso.with(getContext()).load(getContext().getString(R.string.base_url) + "w500/"
+                + imageUrl).into(movie_image_view);
+
         String description = movie.getTitle() + "\n" + movie.getReleaseDate();
         descriptionTextView.setText(description);
 
         movie_image_view.setOnClickListener(new View.OnClickListener() {
-<<<<<<< HEAD
-            @Override
-            public void onClick(View v) {
-=======
 
             @Override
             public void onClick(View v) {
                 Intent movieDetailsIntent = new Intent(getContext(), MovieDetailActivty.class);
-                movieDetailsIntent.putExtra("movieObejct", (MovieObject) getItem(position));
+                movieDetailsIntent.putExtra("movieObject", (MovieObject) getItem(position));
                 getContext().startActivity(movieDetailsIntent);
-            }
-        });
-
-
->>>>>>> 46b76a8ff1c4cc449d7c300164cfe421cdaeb267
-
             }
         });
         return convertView;

@@ -52,7 +52,7 @@ public class MovieObject implements Serializable {
     }
 
     public String getImage() {
-        return "http://image.tmdb.org/t/p/w500/"+ imageUrl;
+        return imageUrl;
     }
 
 

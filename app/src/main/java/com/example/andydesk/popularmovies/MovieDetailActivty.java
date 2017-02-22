@@ -1,9 +1,12 @@
 package com.example.andydesk.popularmovies;
 
 import android.content.Intent;
+import android.graphics.Movie;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
+
+import com.squareup.picasso.Picasso;
 
 public class MovieDetailActivty extends AppCompatActivity {
     private MovieObject movieObject;
@@ -12,12 +15,29 @@ public class MovieDetailActivty extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_detail_activty);
+        movieObject = getMovieObject(savedInstanceState);
 
-        ImageView movieDetailImageView = (ImageView) findViewById(R.id.movieDetailImageView);
-<<<<<<< HEAD
-=======
-        Intent intent = getIntent();
->>>>>>> 46b76a8ff1c4cc449d7c300164cfe421cdaeb267
+        ImageView detailMovieImageView = (ImageView) findViewById(R.id.movieDetailImageView);
+        String url = getString(R.string.base_url) + "w780" + movieObject.getImage();
+        Picasso.with(getApplicationContext()).load(url).into(detailMovieImageView);
 
+    }
+
+    /**
+     * Obtains the movie object of the movie associated with the array adapter item.
+     * @param savedInstanceState
+     * @return
+     */
+    private MovieObject getMovieObject(Bundle savedInstanceState) {
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras != null) {
+               return movieObject = (MovieObject) extras.get("movieObject");
+            }
+        }
+        else {
+            return movieObject = (MovieObject) savedInstanceState.getSerializable("movieObject");
+        }
+        return null;
     }
 }
