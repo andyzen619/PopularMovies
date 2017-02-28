@@ -18,13 +18,6 @@ public class MovieDetailActivty extends AppCompatActivity {
         setContentView(R.layout.activity_movie_detail_activty);
         movieObject = getMovieObject(savedInstanceState);
 
-        //ImageView detailMovieImageView = (ImageView) findViewById(R.id.movieDetailImageView);
-        //String url = getString(R.string.base_url) + "w780" + movieObject.getImage();
-        //Picasso.with(getApplicationContext()).load(url).into(detailMovieImageView);
-
-        VideoView videoView = (VideoView) findViewById(R.id.movieTrailerView);
-        videoView.
-
 
     }
 

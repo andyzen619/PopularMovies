@@ -55,5 +55,7 @@ public class MovieObject implements Serializable {
         return imageUrl;
     }
 
+    public String getTrailerDatabase() {
 
+    }
 }

@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">PopularMovies</string>
     <!--URL's-->
-    <string name="base_url">"http://image.tmdb.org/t/p/</string>
+    <string name="base_popular_url">http://api.themoviedb.org/3/movie/popular?</string>
+    <string name="base_rating_url">http://api.themoviedb.org/3/movie/top_rated?</string>
     <!--Labels-->
     <string name="settings_label">Settings</string>
 </resources>

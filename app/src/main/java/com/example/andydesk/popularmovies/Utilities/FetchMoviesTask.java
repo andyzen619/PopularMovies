@@ -31,16 +31,17 @@ public class FetchMoviesTask extends AsyncTask<SharedPreferences, Void, ArrayLis
     private ArrayList<MovieObject> movieObjectArrayList = new ArrayList<MovieObject>();
     private String movieUrl;
     private final String LOG_TAG = FetchMoviesTask.class.getSimpleName();
-    private String basePopularUrl = "http://api.themoviedb.org/3/movie/popular?";
-    private String baseRatingUrl = "http://api.themoviedb.org/3/movie/top_rated?";
+    public static String basePopularUrl = "http://api.themoviedb.org/3/movie/popular?";
+    public static String baseRatingUrl = "http://api.themoviedb.org/3/movie/top_rated?";
+    public static String baseUrl = "https://api.themoviedb.org/3/movie/";
     private Boolean isSortByRating;
     private Uri urlUri;
 
     @Override
     protected ArrayList<MovieObject> doInBackground(SharedPreferences... params) {
 
-        HttpURLConnection urlConnection = null;
-        BufferedReader bufferedReader = null;
+        HttpURLConnection urlConnection;
+        BufferedReader bufferedReader;
         String rawMovieString = null;
         isSortByRating = params[0].getBoolean("preference_sort_by_rating", false);
 
