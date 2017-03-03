@@ -45,7 +45,7 @@ public class MyMovieAdapter extends ArrayAdapter {
 
         //Populate the each grid item with picture, year, and genre of movie
         String imageUrl = movie.getImage();
-        Picasso.with(getContext()).load(getContext().getString(R.string.base_url) + "w500/"
+        Picasso.with(getContext()).load(getContext().getString(R.string.base_image_url) + "w500/"
                 + imageUrl).into(movie_image_view);
 
         String description = movie.getTitle() + "\n" + movie.getReleaseDate();

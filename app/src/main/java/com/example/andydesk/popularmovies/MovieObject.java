@@ -1,5 +1,8 @@
 package com.example.andydesk.popularmovies;
 
+import com.example.andydesk.popularmovies.Utilities.FetchMoviesTask;
+import com.example.andydesk.popularmovies.Utilities.FetchTrailerTask;
+
 import java.io.Serializable;
 
 /**
@@ -55,7 +58,13 @@ public class MovieObject implements Serializable {
         return imageUrl;
     }
 
+    /**
+     * Retruns the base URL  of the trailer database for this movie object
+     * @return trailer database base URL
+     */
     public String getTrailerDatabase() {
-
+        String trailerDatabaseUrl = "";
+        trailerDatabaseUrl = FetchMoviesTask.baseUrl + String.valueOf(id) + "/videos?";
+        return trailerDatabaseUrl;
     }
 }

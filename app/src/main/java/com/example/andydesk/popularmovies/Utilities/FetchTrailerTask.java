@@ -1,9 +1,11 @@
 package com.example.andydesk.popularmovies.Utilities;
 
+import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
 
 import com.example.andydesk.popularmovies.BuildConfig;
+import com.example.andydesk.popularmovies.MainActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,8 +33,12 @@ public class FetchTrailerTask extends AsyncTask<String, Void, String> {
     String rawJsonString = null;
     InputStream inputStream;
     StringBuffer buffer;
-    String youtubeBaseUrl = "https://www.youtube.com/watch?v=";
+    private Context context = null;
+    //String youtubeBaseUrl = "https://www.youtube.com/watch?v=";
 
+    public FetchTrailerTask(Context context) {
+        this.context = context;
+    }
 
     @Override
     protected String doInBackground(String... params) {
@@ -86,7 +92,7 @@ public class FetchTrailerTask extends AsyncTask<String, Void, String> {
         JSONObject jsonObject = new JSONObject(rawJsonString);
         JSONArray trailerArray = jsonObject.getJSONArray("results");
         String youtubeKey = trailerArray.getString(0);
-        youtubeTrailerUrl = youtubeBaseUrl + youtubeKey;
+        youtubeTrailerUrl =  + youtubeKey;
         return youtubeTrailerUrl;
     }
 }

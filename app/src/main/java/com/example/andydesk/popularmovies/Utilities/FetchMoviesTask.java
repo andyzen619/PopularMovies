@@ -1,5 +1,6 @@
 package com.example.andydesk.popularmovies.Utilities;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -8,6 +9,7 @@ import android.util.Log;
 
 import com.example.andydesk.popularmovies.BuildConfig;
 import com.example.andydesk.popularmovies.MovieObject;
+import com.example.andydesk.popularmovies.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,11 +33,16 @@ public class FetchMoviesTask extends AsyncTask<SharedPreferences, Void, ArrayLis
     private ArrayList<MovieObject> movieObjectArrayList = new ArrayList<MovieObject>();
     private String movieUrl;
     private final String LOG_TAG = FetchMoviesTask.class.getSimpleName();
-    public static String basePopularUrl = "http://api.themoviedb.org/3/movie/popular?";
-    public static String baseRatingUrl = "http://api.themoviedb.org/3/movie/top_rated?";
-    public static String baseUrl = "https://api.themoviedb.org/3/movie/";
+//    public static String basePopularUrl = "http://api.themoviedb.org/3/movie/popular?";
+//    public static String baseRatingUrl = "http://api.themoviedb.org/3/movie/top_rated?";
+//    public static String baseUrl = "https://api.themoviedb.org/3/movie/";
     private Boolean isSortByRating;
     private Uri urlUri;
+    private Context context = null;
+
+    public FetchMoviesTask(Context context) {
+        this.context = context;
+    }
 
     @Override
     protected ArrayList<MovieObject> doInBackground(SharedPreferences... params) {
@@ -46,12 +53,12 @@ public class FetchMoviesTask extends AsyncTask<SharedPreferences, Void, ArrayLis
         isSortByRating = params[0].getBoolean("preference_sort_by_rating", false);
 
         if (isSortByRating) {
-            urlUri = Uri.parse(baseRatingUrl).buildUpon()
+            urlUri = Uri.parse(context.getString(R.string.base_rating_url)).buildUpon()
                     .appendQueryParameter("api_key", BuildConfig.OPEN_MOVIE_API_KEY)
                     .build();
         }
         else {
-            urlUri = Uri.parse(basePopularUrl).buildUpon()
+            urlUri = Uri.parse(context.getString(R.string.base_popular_url)).buildUpon()
                     .appendQueryParameter("api_key", BuildConfig.OPEN_MOVIE_API_KEY)
                     .build();
         }
