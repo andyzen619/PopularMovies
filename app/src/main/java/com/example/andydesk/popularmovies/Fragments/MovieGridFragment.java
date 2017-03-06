@@ -50,7 +50,8 @@ public class MovieGridFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_movie_grid, container, false);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
-        fetchMoviesTask = new FetchMoviesTask(getContext());
+        fetchMoviesTask = new FetchMoviesTask();
+        fetchMoviesTask.setContext(getContext());
         fetchMoviesTask.execute(sharedPreferences);
         try {
             movieObjectArrayList = (ArrayList<MovieObject>) fetchMoviesTask.get();
@@ -94,7 +95,8 @@ public class MovieGridFragment extends Fragment {
      * Refresh the movie information from the host
      */
     private void refreshMovieList() {
-        FetchMoviesTask refreshTask = new FetchMoviesTask(getContext());
+        FetchMoviesTask refreshTask = new FetchMoviesTask();
+        refreshTask.setContext(getContext());
         refreshTask.execute(sharedPreferences);
         try {
             movieObjectArrayList = refreshTask.get();

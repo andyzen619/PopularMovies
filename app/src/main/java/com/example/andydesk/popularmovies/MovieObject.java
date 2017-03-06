@@ -1,5 +1,7 @@
 package com.example.andydesk.popularmovies;
 
+import android.content.Context;
+
 import com.example.andydesk.popularmovies.Utilities.FetchMoviesTask;
 import com.example.andydesk.popularmovies.Utilities.FetchTrailerTask;
 
@@ -16,8 +18,9 @@ public class MovieObject implements Serializable {
     private String plot;
     private String imageUrl;
     private int id;
+    private Context context;
 
-    public MovieObject(String title, String releaseDate, String Genre, int id){
+    public MovieObject(String title, String releaseDate, String genre, int id){
         this.releaseDate = releaseDate;
         this.genre = genre;
         this.title = title;
@@ -38,6 +41,14 @@ public class MovieObject implements Serializable {
 
     public void setPlot(String plot) {
         this.plot = plot;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
+    }
+
+    public Context getContext() {
+        return this.context;
     }
 
     public String getPlot() {
@@ -64,7 +75,7 @@ public class MovieObject implements Serializable {
      */
     public String getTrailerDatabase() {
         String trailerDatabaseUrl = "";
-        trailerDatabaseUrl = FetchMoviesTask.baseUrl + String.valueOf(id) + "/videos?";
+        trailerDatabaseUrl = context.getString(R.string.base_url) + String.valueOf(id) + "/videos?";
         return trailerDatabaseUrl;
     }
 }

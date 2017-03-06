@@ -40,10 +40,6 @@ public class FetchMoviesTask extends AsyncTask<SharedPreferences, Void, ArrayLis
     private Uri urlUri;
     private Context context = null;
 
-    public FetchMoviesTask(Context context) {
-        this.context = context;
-    }
-
     @Override
     protected ArrayList<MovieObject> doInBackground(SharedPreferences... params) {
 
@@ -117,6 +113,7 @@ public class FetchMoviesTask extends AsyncTask<SharedPreferences, Void, ArrayLis
                 movieObject = new MovieObject(title, releaseDate, "genre", id);
                 movieObject.setImage(imagePath);
                 movieObjectArrayList.add(movieObject);
+                movieObject.setContext(context);
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -124,4 +121,11 @@ public class FetchMoviesTask extends AsyncTask<SharedPreferences, Void, ArrayLis
         return movieObjectArrayList;
     }
 
+    public Context getContext() {
+        return context;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
+    }
 }

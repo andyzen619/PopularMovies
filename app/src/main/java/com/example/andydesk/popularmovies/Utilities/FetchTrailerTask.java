@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 
 import com.example.andydesk.popularmovies.BuildConfig;
 import com.example.andydesk.popularmovies.MainActivity;
+import com.example.andydesk.popularmovies.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,11 +35,6 @@ public class FetchTrailerTask extends AsyncTask<String, Void, String> {
     InputStream inputStream;
     StringBuffer buffer;
     private Context context = null;
-    //String youtubeBaseUrl = "https://www.youtube.com/watch?v=";
-
-    public FetchTrailerTask(Context context) {
-        this.context = context;
-    }
 
     @Override
     protected String doInBackground(String... params) {
@@ -80,7 +76,12 @@ public class FetchTrailerTask extends AsyncTask<String, Void, String> {
         } catch(IOException e) {
             e.printStackTrace();
         }
-        return rawJsonString;
+        try {
+            youtubeTrailerUrl = getTrailerUrl(rawJsonString);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return youtubeTrailerUrl;
     }
 
     /**
@@ -91,8 +92,17 @@ public class FetchTrailerTask extends AsyncTask<String, Void, String> {
     public String getTrailerUrl(String rawJsonString) throws JSONException {
         JSONObject jsonObject = new JSONObject(rawJsonString);
         JSONArray trailerArray = jsonObject.getJSONArray("results");
-        String youtubeKey = trailerArray.getString(0);
-        youtubeTrailerUrl =  + youtubeKey;
+        JSONObject trailerJsonObject = trailerArray.getJSONObject(0);
+        String youtubeTrailerKey = trailerJsonObject.getString("key");
+        youtubeTrailerUrl =  context.getString(R.string.base_youtube_url) + youtubeTrailerKey;
         return youtubeTrailerUrl;
+    }
+
+    public Context getContext() {
+        return context;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
     }
 }

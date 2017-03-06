@@ -56,7 +56,9 @@ public class MyMovieAdapter extends ArrayAdapter {
             @Override
             public void onClick(View v) {
                 Intent movieDetailsIntent = new Intent(getContext(), MovieDetailActivty.class);
-                movieDetailsIntent.putExtra("movieObject", (MovieObject) getItem(position));
+                MovieObject currentMovieObject = (MovieObject) getItem(position);
+                currentMovieObject.setContext(getContext());
+                movieDetailsIntent.putExtra("movieObject", currentMovieObject);
                 getContext().startActivity(movieDetailsIntent);
             }
         });

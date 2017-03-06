@@ -7,9 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import com.example.andydesk.popularmovies.Fragments.MovieGridFragment;
 
-//TODO: Implement refresh
+import java.io.Serializable;
 
-public class MainActivity extends AppCompatActivity {
+
+
+public class MainActivity extends AppCompatActivity implements Serializable {
 
     SharedPreferences sharedPreferences;
     @Override
