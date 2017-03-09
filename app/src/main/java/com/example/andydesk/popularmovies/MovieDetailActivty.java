@@ -1,21 +1,18 @@
 package com.example.andydesk.popularmovies;
 
-import android.content.Intent;
-import android.graphics.Movie;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ImageView;
-import android.widget.VideoView;
-
-import com.example.andydesk.popularmovies.Utilities.FetchMoviesTask;
 import com.example.andydesk.popularmovies.Utilities.FetchTrailerTask;
-import com.squareup.picasso.Picasso;
-
 import java.util.concurrent.ExecutionException;
+import com.google.android.youtube.player.YouTubeBaseActivity;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerView;
 
-public class MovieDetailActivty extends AppCompatActivity {
+
+public class MovieDetailActivty extends YouTubeBaseActivity{
     private MovieObject movieObject;
     private String youtubeTrailerUrl;
+    public static final String youtubeApiKey = "AIzaSyBORBGAqLbU4CrsXrHHEHTw4bjx5Li6DKQ";
+    private YouTubePlayerView youTubePlayerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +21,8 @@ public class MovieDetailActivty extends AppCompatActivity {
         movieObject = getMovieObject(savedInstanceState);
         movieObject.setContext(getApplicationContext());
         youtubeTrailerUrl = getYoutubeTrailerUrl();
+        youTubePlayerView =
+
     }
 
     /**
