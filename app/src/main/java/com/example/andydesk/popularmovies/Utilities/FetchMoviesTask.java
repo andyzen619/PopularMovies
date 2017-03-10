@@ -98,7 +98,7 @@ public class FetchMoviesTask extends AsyncTask<SharedPreferences, Void, ArrayLis
     public ArrayList<MovieObject> getMovieList(String jsonString) {
 
         JSONObject movie;
-        MovieObject movieObject;
+        MovieObject movieObject = null;
 
         try {
             JSONObject movieJsonObject = new JSONObject(jsonString);
@@ -108,9 +108,13 @@ public class FetchMoviesTask extends AsyncTask<SharedPreferences, Void, ArrayLis
                 String releaseDate =  movie.getString("release_date");
                 JSONArray genre  = movie.getJSONArray("genre_ids");
                 String imagePath = movie.getString("poster_path");
+                String overview = movie.getString("overview");
                 String title = movie.getString("title");
+                Double rating = movie.getDouble("vote_average");
                 int id = movie.getInt("id");
                 movieObject = new MovieObject(title, releaseDate, "genre", id);
+                movieObject.setPlot(overview);
+                movieObject.setRating(rating);
                 movieObject.setImage(imagePath);
                 movieObjectArrayList.add(movieObject);
                 movieObject.setContext(context);

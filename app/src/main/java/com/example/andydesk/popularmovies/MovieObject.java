@@ -14,7 +14,7 @@ public class MovieObject implements Serializable {
     private String genre;
     private String title;
     private String releaseDate;
-    private String rating;
+    private double rating;
     private String plot;
     private String imageUrl;
     private int id;
@@ -59,6 +59,14 @@ public class MovieObject implements Serializable {
         else {
             return plot;
         }
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
     }
 
     public void setImage(String url) {

@@ -1,6 +1,7 @@
 package com.example.andydesk.popularmovies;
 
 import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.andydesk.popularmovies.Utilities.FetchTrailerTask;
@@ -9,6 +10,8 @@ import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
+
+import org.w3c.dom.Text;
 
 
 public class MovieDetailActivty extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener{
@@ -21,10 +24,19 @@ public class MovieDetailActivty extends YouTubeBaseActivity implements YouTubePl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_detail_activty);
+
         movieObject = getMovieObject(savedInstanceState);
         movieObject.setContext(getApplicationContext());
+
         youTubePlayerView = (YouTubePlayerView) findViewById(R.id.movie_detail_youtube_trailer_view);
         youTubePlayerView.initialize(youtubeApiKey, this);
+
+        TextView title = (TextView) findViewById(R.id.movie_detail_title_text_view);
+        title.setText(movieObject.getTitle());
+        TextView plot = (TextView) findViewById(R.id.movie_detail_plot_text_view);
+        plot.setText(movieObject.getPlot());
+        TextView rating = (TextView) findViewById(R.id.movie_detail_ratomg_view);
+        rating.setText(Double.toString(movieObject.getRating()));
     }
 
     /**
