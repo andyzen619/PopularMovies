@@ -1,14 +1,17 @@
 package com.example.andydesk.popularmovies;
 
 import android.os.Bundle;
+import android.widget.Toast;
+
 import com.example.andydesk.popularmovies.Utilities.FetchTrailerTask;
 import java.util.concurrent.ExecutionException;
 import com.google.android.youtube.player.YouTubeBaseActivity;
+import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
 
 
-public class MovieDetailActivty extends YouTubeBaseActivity{
+public class MovieDetailActivty extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener{
     private MovieObject movieObject;
     private String youtubeTrailerUrl;
     public static final String youtubeApiKey = "AIzaSyBORBGAqLbU4CrsXrHHEHTw4bjx5Li6DKQ";
@@ -20,9 +23,8 @@ public class MovieDetailActivty extends YouTubeBaseActivity{
         setContentView(R.layout.activity_movie_detail_activty);
         movieObject = getMovieObject(savedInstanceState);
         movieObject.setContext(getApplicationContext());
-        youtubeTrailerUrl = getYoutubeTrailerUrl();
-        youTubePlayerView =
-
+        youTubePlayerView = (YouTubePlayerView) findViewById(R.id.movie_detail_youtube_trailer_view);
+        youTubePlayerView.initialize(youtubeApiKey, this);
     }
 
     /**
@@ -47,7 +49,7 @@ public class MovieDetailActivty extends YouTubeBaseActivity{
      * Retreive that youtube url of the trailer of chosen movie;
      * @return url string of youtube url
      */
-    private String getYoutubeTrailerUrl() {
+    private String getYoutubeTrailerKey() {
         String resultUrl = null;
         FetchTrailerTask movieTrailerUrl = new FetchTrailerTask();
         movieTrailerUrl.setContext(getApplicationContext());
@@ -60,5 +62,23 @@ public class MovieDetailActivty extends YouTubeBaseActivity{
             e.printStackTrace();
         }
         return resultUrl;
+    }
+
+
+    @Override
+    public void onInitializationSuccess(YouTubePlayer.Provider provider,
+                                        YouTubePlayer youTubePlayer,
+                                        boolean wasRestored) {
+        if(!wasRestored) {
+            youTubePlayer.cueVideo(getYoutubeTrailerKey());
+        }
+    }
+
+    @Override
+    public void onInitializationFailure(YouTubePlayer.Provider provider,
+                                        YouTubeInitializationResult youTubeInitializationResult) {
+        CharSequence text = "Video play back failed";
+        Toast toast  = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
+        toast.show();
     }
 }

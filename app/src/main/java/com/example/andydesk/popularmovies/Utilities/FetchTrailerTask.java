@@ -94,7 +94,7 @@ public class FetchTrailerTask extends AsyncTask<String, Void, String> {
         JSONArray trailerArray = jsonObject.getJSONArray("results");
         JSONObject trailerJsonObject = trailerArray.getJSONObject(0);
         String youtubeTrailerKey = trailerJsonObject.getString("key");
-        youtubeTrailerUrl =  context.getString(R.string.base_youtube_url) + youtubeTrailerKey;
+        youtubeTrailerUrl =  youtubeTrailerKey;
         return youtubeTrailerUrl;
     }
 
